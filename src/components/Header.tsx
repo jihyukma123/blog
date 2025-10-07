@@ -32,13 +32,13 @@ export const Header = () => {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="group p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors cursor-pointer"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
                 // Moon Icon (Dark mode)
                 <svg
-                  className="w-5 h-5 text-gray-800 dark:text-gray-200"
+                  className="w-5 h-5 text-gray-800 dark:text-gray-200 transition-transform duration-300 group-hover:rotate-12"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -53,7 +53,7 @@ export const Header = () => {
               ) : (
                 // Sun Icon (Light mode)
                 <svg
-                  className="w-5 h-5 text-gray-800 dark:text-gray-200"
+                  className="w-5 h-5 text-gray-800 dark:text-gray-200 transition-transform duration-300 group-hover:rotate-45"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
