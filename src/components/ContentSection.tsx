@@ -21,13 +21,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {items.map((item) => (
-            <ArticleCard
-              key={item.id}
-              title={item.title}
-              description={item.description}
-              date={item.date}
-              link={item.link}
-            />
+            <ArticleCard key={item.id} post={item} />
           ))}
         </div>
       </div>

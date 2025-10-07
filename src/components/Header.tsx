@@ -1,32 +1,40 @@
 import { useTheme } from "../contexts/ThemeContext";
+import { NavLink } from "react-router-dom";
 
 export const Header = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme, theme } = useTheme();
+
+  const getLinkClassName = ({ isActive }: { isActive: boolean }) => {
+    const baseClasses =
+      "font-medium transition-colors hover:text-gray-900 dark:hover:text-gray-100";
+    const activeClasses =
+      "text-gray-900 dark:text-gray-100 underline underline-offset-4 decoration-2 decoration-blue-500";
+    const inactiveClasses = "text-gray-600 dark:text-gray-400";
+
+    return `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Logo / Name - Left */}
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          <NavLink
+            to="/"
+            className="text-2xl font-bold text-gray-900 dark:text-gray-100"
+          >
             My Blog
-          </h1>
+          </NavLink>
 
           {/* Navigation + Theme Toggle - Right */}
           <div className="flex items-center space-x-8">
             <nav className="flex items-center space-x-8">
-              <a
-                href="#home"
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors font-medium"
-              >
+              <NavLink to="/" className={getLinkClassName}>
                 Home
-              </a>
-              <a
-                href="#about"
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors font-medium"
-              >
+              </NavLink>
+              <NavLink to="/about" className={getLinkClassName}>
                 About
-              </a>
+              </NavLink>
             </nav>
 
             {/* Theme Toggle Button */}
