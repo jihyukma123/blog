@@ -8,7 +8,7 @@ export const Header = () => {
     const baseClasses =
       "font-medium transition-colors hover:text-gray-900 dark:hover:text-gray-100";
     const activeClasses =
-      "text-gray-900 dark:text-gray-100 underline underline-offset-4 decoration-2 decoration-blue-500";
+      "text-gray-900 dark:text-gray-100 underline underline-offset-4 decoration-2 decoration-[slateblue]";
     const inactiveClasses = "text-gray-600 dark:text-gray-400";
 
     return `${baseClasses} ${isActive ? activeClasses : inactiveClasses}`;
