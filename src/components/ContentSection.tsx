@@ -1,4 +1,3 @@
-import React from "react";
 import ArticleCard from "./ArticleCard";
 import type { Article } from "../types";
 
@@ -8,11 +7,7 @@ interface ContentSectionProps {
   sectionId: string;
 }
 
-const ContentSection: React.FC<ContentSectionProps> = ({
-  title,
-  items,
-  sectionId,
-}) => {
+const ContentSection = ({ title, items, sectionId }: ContentSectionProps) => {
   return (
     <section id={sectionId} className="w-full pt-0 pb-12">
       <div className="max-w-7xl mx-auto px-8">

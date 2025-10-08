@@ -1,10 +1,13 @@
 import { Routes, Route } from "react-router-dom";
+
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { Header } from "./components/Header";
+
 import MainPage from "./pages/MainPage";
-import AboutPage from "./pages/AboutPage";
 import PostPage from "./pages/PostPage";
+import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
+
+import { Header } from "./components/Header";
 
 function App() {
   return (

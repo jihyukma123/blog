@@ -1,12 +1,12 @@
-import React from "react";
 import { Link } from "react-router-dom";
+
 import type { Article } from "../types";
 
 interface ArticleCardProps {
   post: Article;
 }
 
-const ArticleCard: React.FC<ArticleCardProps> = ({ post }) => {
+const ArticleCard = ({ post }: ArticleCardProps) => {
   const { id, title, description, date } = post;
 
   return (

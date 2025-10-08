@@ -1,5 +1,6 @@
-import { useTheme } from "../contexts/ThemeContext";
 import { NavLink } from "react-router-dom";
+
+import { useTheme } from "../contexts/ThemeContext";
 
 export const Header = () => {
   const { toggleTheme, theme } = useTheme();
@@ -23,7 +24,7 @@ export const Header = () => {
             to="/"
             className="text-2xl font-bold text-gray-900 dark:text-gray-100"
           >
-            My Blog
+            Tech Blog
           </NavLink>
 
           {/* Navigation + Theme Toggle - Right */}
