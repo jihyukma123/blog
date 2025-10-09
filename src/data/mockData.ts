@@ -1,55 +1,15 @@
 import type { Article, Note, Project } from "../types";
+import { loadPosts } from "../utils/postLoader";
 
-export const blogPosts: Article[] = [
-  {
-    id: "blog-1",
-    title: "Getting Started with React and TypeScript",
-    description:
-      "A comprehensive guide to building modern web applications with React and TypeScript.",
-    date: "October 5, 2025",
-    link: "/blog/react-typescript",
-  },
-  {
-    id: "blog-2",
-    title: "Understanding JavaScript Closures",
-    description:
-      "Deep dive into one of JavaScript's most powerful and confusing features.",
-    date: "October 1, 2025",
-    link: "/blog/javascript-closures",
-  },
-  {
-    id: "blog-3",
-    title: "CSS Grid vs Flexbox: When to Use What",
-    description:
-      "Learn the differences between CSS Grid and Flexbox and when to use each layout system.",
-    date: "September 28, 2025",
-    link: "/blog/css-grid-flexbox",
-  },
-  {
-    id: "blog-4",
-    title: "Building a REST API with Node.js",
-    description:
-      "Step-by-step tutorial on creating a RESTful API using Node.js and Express.",
-    date: "September 20, 2025",
-    link: "/blog/nodejs-rest-api",
-  },
-  {
-    id: "blog-5",
-    title: "Introduction to Tailwind CSS",
-    description:
-      "Why utility-first CSS is changing the way we build user interfaces.",
-    date: "September 15, 2025",
-    link: "/blog/tailwind-css-intro",
-  },
-  {
-    id: "blog-6",
-    title: "Web Performance Optimization Tips",
-    description:
-      "Practical tips to make your website faster and improve user experience.",
-    date: "September 10, 2025",
-    link: "/blog/web-performance",
-  },
-];
+// 실제 포스트는 동적으로 로드
+// 초기값은 빈 배열이지만, 컴포넌트에서 loadPosts()를 호출하여 채움
+export let blogPosts: Article[] = [];
+
+// 초기화 함수 (앱 시작 시 호출)
+export async function initializeBlogPosts() {
+  blogPosts = await loadPosts();
+  return blogPosts;
+}
 
 export const notes: Note[] = [
   {
