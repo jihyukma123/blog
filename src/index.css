@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* 스크롤바로 인한 레이아웃 시프트 방지 */
+html {
+  scrollbar-gutter: stable;
+}
+
 /* Highlight.js 테마 - 라이트 모드 */
 @import "highlight.js/styles/github.css";
 
