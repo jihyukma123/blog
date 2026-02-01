@@ -33,13 +33,13 @@ export default async function Home({
           </a>
           <nav className="flex items-center gap-6 md:gap-8">
             <a
-              className="text-sm font-medium hover:text-primary transition-colors hover:underline decoration-primary decoration-2 underline-offset-4 text-text-main dark:text-gray-300"
+              className="text-sm font-semibold text-text-main dark:text-white underline decoration-primary decoration-2 underline-offset-4"
               href="#"
             >
               {content.nav.blog}
             </a>
             <a
-              className="text-sm font-medium hover:text-primary transition-colors hover:underline decoration-primary decoration-2 underline-offset-4 text-text-main dark:text-gray-300"
+              className="text-sm font-medium text-text-main dark:text-gray-300 hover:text-primary transition-colors"
               href="#"
             >
               {content.nav.about}
