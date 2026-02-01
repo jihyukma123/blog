@@ -53,7 +53,7 @@ export default async function ArticleDetail({
     <>
       <header className="w-full flex justify-center py-8 px-4 md:px-8 border-b border-gray-200/50 dark:border-gray-800">
         <div className="max-w-[720px] w-full flex items-center justify-between">
-          <a className="flex items-center gap-2 group" href="#">
+          <a className="flex items-center gap-2 group" href="/">
             <span className="material-symbols-outlined text-primary text-3xl group-hover:rotate-12 transition-transform">
               potted_plant
             </span>
