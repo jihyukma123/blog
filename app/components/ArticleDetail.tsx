@@ -1,4 +1,6 @@
 import type { ReactNode } from "react";
+import { renderMarkdown } from "../lib/markdown";
+import CodeBlockEnhancer from "./CodeBlockEnhancer";
 
 export type TocItem = {
   id: string;
@@ -23,7 +25,8 @@ export type ArticleMeta = {
 
 type ArticleDetailProps = {
   meta: ArticleMeta;
-  content: ReactNode;
+  content?: ReactNode;
+  markdown?: string;
   toc?: TocItem[];
   previousPost?: AdjacentPost;
   nextPost?: AdjacentPost;
@@ -36,23 +39,26 @@ const defaultToc: TocItem[] = [
   { id: "conclusion", label: "Conclusion" },
 ];
 
-export default function ArticleDetail({
+export default async function ArticleDetail({
   meta,
   content,
+  markdown,
   toc = defaultToc,
   previousPost,
   nextPost,
 }: ArticleDetailProps) {
+  const renderedMarkdown = markdown ? await renderMarkdown(markdown) : null;
+
   return (
     <>
       <header className="w-full flex justify-center py-8 px-4 md:px-8 border-b border-gray-200/50 dark:border-gray-800">
-        <div className="max-w-[1000px] w-full flex items-center justify-between">
+        <div className="max-w-[720px] w-full flex items-center justify-between">
           <a className="flex items-center gap-2 group" href="#">
             <span className="material-symbols-outlined text-primary text-3xl group-hover:rotate-12 transition-transform">
               potted_plant
             </span>
             <span className="text-xl font-bold tracking-tight text-text-main dark:text-white">
-              CozyCode
+              Notes by Ji
             </span>
           </a>
           <nav className="flex items-center gap-6 md:gap-8">
@@ -76,8 +82,8 @@ export default function ArticleDetail({
       </header>
 
       <main className="flex-1 flex justify-center px-4 md:px-8 py-12 md:py-20">
-        <div className="max-w-[1000px] w-full grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-16">
-          <article className="w-full max-w-[720px]">
+        <div className="max-w-[720px] w-full relative">
+          <article className="w-full">
             <header className="mb-12">
               <div className="flex items-center gap-3 text-sm font-bold text-primary mb-4 uppercase tracking-widest">
                 {meta.categories.map((category, index) => (
@@ -89,7 +95,7 @@ export default function ArticleDetail({
                   </div>
                 ))}
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-serif leading-tight text-text-main dark:text-white mb-6">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-text-main dark:text-white mb-6">
                 {meta.title}
               </h1>
               <div className="flex flex-wrap items-center gap-6 text-text-muted border-b border-gray-200 dark:border-gray-800 pb-8">
@@ -103,18 +109,19 @@ export default function ArticleDetail({
                   <span className="material-symbols-outlined text-sm">schedule</span>
                   <span>{meta.readTime}</span>
                 </div>
-                {typeof meta.commentCount === "number" ? (
-                  <div className="flex items-center gap-2">
-                    <span className="material-symbols-outlined text-sm">
-                      chat_bubble_outline
-                    </span>
-                    <span>{meta.commentCount} comments</span>
-                  </div>
-                ) : null}
               </div>
             </header>
 
-            <div className="max-w-none">{content}</div>
+            <div className="max-w-none article-content">
+              {renderedMarkdown ? (
+                <div
+                  dangerouslySetInnerHTML={{ __html: renderedMarkdown }}
+                />
+              ) : (
+                content
+              )}
+              <CodeBlockEnhancer />
+            </div>
 
             <footer className="mt-20 pt-10 border-t border-gray-200 dark:border-gray-800">
               <div className="flex flex-col md:flex-row justify-between gap-8 mb-12">
@@ -161,8 +168,8 @@ export default function ArticleDetail({
             </footer>
           </article>
 
-          <aside className="hidden lg:block">
-            <div className="sticky top-12 flex flex-col gap-8">
+          <aside className="hidden lg:block toc-rail">
+            <div className="flex flex-col gap-8">
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-widest text-text-muted mb-6">
                   Table of Contents
@@ -182,31 +189,14 @@ export default function ArticleDetail({
                 </nav>
               </div>
 
-              <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-gray-200 dark:border-gray-700">
-                <h4 className="text-sm font-bold text-text-main mb-3">
-                  Newsletter
-                </h4>
-                <p className="text-xs text-text-muted mb-4 leading-relaxed">
-                  Get new articles delivered straight to your inbox.
-                </p>
-                <form className="flex flex-col gap-2">
-                  <input
-                    className="text-xs px-3 py-2 rounded border border-gray-200 dark:border-gray-700 bg-background-light dark:bg-gray-900 focus:ring-1 focus:ring-primary outline-none"
-                    placeholder="email@address.com"
-                    type="email"
-                  />
-                  <button className="bg-primary text-white text-xs font-bold py-2 rounded hover:bg-primary/90 transition-colors">
-                    Subscribe
-                  </button>
-                </form>
-              </div>
+              {/* TODO: newletter 기능 활성화하기 */}
             </div>
           </aside>
         </div>
       </main>
 
       <footer className="w-full py-12 border-t border-gray-200 dark:border-gray-800 flex justify-center px-4 mt-auto">
-        <div className="max-w-[1000px] w-full flex flex-col sm:flex-row justify-between items-center gap-6">
+        <div className="max-w-[720px] w-full flex flex-col sm:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-6">
             <a
               className="text-text-muted hover:text-primary transition-colors text-sm font-bold"
@@ -229,7 +219,7 @@ export default function ArticleDetail({
           </div>
           <p className="text-text-muted text-sm text-center sm:text-right">
             Built with <span className="text-primary">♥</span> and Next.js.
-            <br className="sm:hidden" />© 2023 CozyCode.
+            <br className="sm:hidden" />© 2023 Notes by Ji.
           </p>
         </div>
       </footer>
