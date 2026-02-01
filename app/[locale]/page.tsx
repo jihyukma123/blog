@@ -44,12 +44,6 @@ export default async function Home({
             >
               {content.nav.about}
             </a>
-            <a
-              className="text-sm font-medium hover:text-primary transition-colors hover:underline decoration-primary decoration-2 underline-offset-4 text-text-main dark:text-gray-300"
-              href="#"
-            >
-              {content.nav.rss}
-            </a>
           </nav>
         </div>
       </header>

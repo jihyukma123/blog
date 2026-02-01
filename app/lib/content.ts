@@ -14,7 +14,6 @@ export type HomeContent = {
   nav: {
     blog: string;
     about: string;
-    rss: string;
   };
   readArticle: string;
   hero: {
@@ -67,7 +66,6 @@ export const getHomeContent = (locale: Locale): HomeContent => ({
   nav: {
     blog: t(locale, "nav.blog"),
     about: t(locale, "nav.about"),
-    rss: t(locale, "nav.rss"),
   },
   readArticle: t(locale, "home.readArticle"),
   hero: {
@@ -129,7 +127,6 @@ export const getArticleContent = (locale: Locale): ArticleContent => ({
   nav: {
     blog: t(locale, "nav.blog"),
     about: t(locale, "nav.about"),
-    rss: t(locale, "nav.rss"),
   },
   meta: {
     categories: [t(locale, "article.category1"), t(locale, "article.category2")],

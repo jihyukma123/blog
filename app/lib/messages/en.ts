@@ -1,7 +1,6 @@
 const messages = {
   "nav.blog": "Blog",
   "nav.about": "About",
-  "nav.rss": "RSS",
   "home.hero.line1": "Hi, I'm Alex.",
   "home.hero.line2Lead": "Welcome to my ",
   "home.hero.line2Highlight": "digital garden",

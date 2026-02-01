@@ -1,7 +1,6 @@
 const messages = {
   "nav.blog": "블로그",
   "nav.about": "소개",
-  "nav.rss": "RSS",
   "home.hero.line1": "안녕하세요, Alex입니다.",
   "home.hero.line2Lead": "",
   "home.hero.line2Highlight": "디지털 가든",
