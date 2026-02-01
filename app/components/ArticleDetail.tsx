@@ -80,23 +80,58 @@ export default async function ArticleDetail({
               Notes by Ji
             </span>
           </a>
-          <nav className="flex items-center gap-6 md:gap-8">
-            <a
-              className="text-sm font-semibold text-text-main dark:text-white underline decoration-primary decoration-2 underline-offset-4"
-              href="#"
-            >
-              {navLabels.blog}
-            </a>
-            <a
-              className="text-sm font-medium text-text-main dark:text-gray-300 hover:text-primary transition-colors"
-              href="#"
-            >
-              {navLabels.about}
-            </a>
-            <button className="material-symbols-outlined text-text-muted hover:text-primary transition-colors">
-              search
-            </button>
-          </nav>
+          <div className="flex items-center gap-6 md:gap-8">
+            <nav className="flex items-center gap-6 md:gap-8">
+              <a
+                className="text-sm font-semibold text-text-main dark:text-white underline decoration-primary decoration-2 underline-offset-4"
+                href="#"
+              >
+                {navLabels.blog}
+              </a>
+              <a
+                className="text-sm font-medium text-text-main dark:text-gray-300 hover:text-primary transition-colors"
+                href="#"
+              >
+                {navLabels.about}
+              </a>
+              <button className="material-symbols-outlined text-text-muted hover:text-primary transition-colors">
+                search
+              </button>
+            </nav>
+            {/*
+              TODO: 로고 추가 및 위치 설정
+              <div className="hidden sm:flex items-center gap-3">
+                <a
+                  aria-label="GitHub"
+                  className="text-text-muted hover:text-primary transition-colors"
+                  href="#"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="h-5 w-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.74.08-.74 1.2.09 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.48.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.32.47-2.4 1.24-3.25-.12-.31-.54-1.56.12-3.25 0 0 1.01-.32 3.3 1.24a11.5 11.5 0 0 1 6 0c2.28-1.56 3.29-1.24 3.29-1.24.66 1.69.24 2.94.12 3.25.77.85 1.24 1.93 1.24 3.25 0 4.62-2.8 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5z" />
+                  </svg>
+                </a>
+                <a
+                  aria-label="LinkedIn"
+                  className="text-text-muted hover:text-primary transition-colors"
+                  href="#"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className="h-5 w-5"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.05-1.86-3.05-1.87 0-2.16 1.46-2.16 2.96v5.67H9.31V9h3.41v1.56h.05c.47-.9 1.63-1.86 3.35-1.86 3.58 0 4.23 2.36 4.23 5.43v6.32zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM3.56 20.45h3.56V9H3.56v11.45z" />
+                  </svg>
+                </a>
+              </div>
+            */}
+          </div>
         </div>
       </header>
 
@@ -224,26 +259,6 @@ export default async function ArticleDetail({
 
       <footer className="w-full py-12 border-t border-gray-200 dark:border-gray-800 flex justify-center px-4 mt-auto">
         <div className="max-w-180 w-full flex flex-col sm:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-6">
-            <a
-              className="text-text-muted hover:text-primary transition-colors text-sm font-bold"
-              href="#"
-            >
-              Twitter
-            </a>
-            <a
-              className="text-text-muted hover:text-primary transition-colors text-sm font-bold"
-              href="#"
-            >
-              GitHub
-            </a>
-            <a
-              className="text-text-muted hover:text-primary transition-colors text-sm font-bold"
-              href="#"
-            >
-              LinkedIn
-            </a>
-          </div>
           <p className="text-text-muted text-sm text-center sm:text-right">
             Built with <span className="text-primary">♥</span> and Next.js.
             <br className="sm:hidden" />© 2023 Notes by Ji.
