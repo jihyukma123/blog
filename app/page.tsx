@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <>
-      <header className="w-full flex justify-center py-8 px-4 md:px-8">
+      <header className="w-full flex justify-center py-6 px-4 md:px-8">
         <div className="max-w-[720px] w-full flex items-center justify-between">
           <a className="flex items-center gap-2 group" href="/">
             <span className="material-symbols-outlined text-primary text-3xl group-hover:rotate-12 transition-transform">
@@ -33,9 +33,9 @@ export default function Home() {
           </nav>
         </div>
       </header>
-      <main className="flex-1 flex flex-col items-center px-4 md:px-8 pb-20">
-        <div className="max-w-[720px] w-full flex flex-col gap-16 md:gap-24 pt-12 md:pt-20">
-          <section className="flex flex-col items-start gap-6">
+      <main className="flex-1 flex flex-col items-center px-4 md:px-8 pb-16">
+        <div className="max-w-[720px] w-full flex flex-col gap-12 md:gap-16 pt-8 md:pt-12">
+          <section className="flex flex-col items-start gap-5">
             <div className="relative">
               <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tight text-text-main dark:text-white">
                 Hi, I&apos;m Alex. <br />
@@ -52,14 +52,8 @@ export default function Home() {
               This is a space for thoughts on code, philosophy, and the
               occasional doodle.
             </p>
-            <div className="flex gap-4 pt-2">
+            <div className="flex gap-4 pt-1">
               <button className="flex items-center gap-2 text-sm font-bold bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-primary/90 transition-all hover:scale-105">
-                <span>Read the latest</span>
-                <span className="material-symbols-outlined text-[18px]">
-                  arrow_downward
-                </span>
-              </button>
-              <button className="flex items-center gap-2 text-sm font-bold bg-transparent border border-gray-300 dark:border-gray-700 hover:border-primary text-text-muted hover:text-primary px-5 py-2.5 rounded-lg transition-all">
                 <span>More about me</span>
               </button>
             </div>
