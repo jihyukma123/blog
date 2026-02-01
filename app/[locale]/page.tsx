@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getAllArticles } from "../lib/articles";
 import { getHomeContent } from "../lib/content";
 import { isLocale, locales } from "../lib/i18n";
 
@@ -17,6 +18,7 @@ export default async function Home({
   }
 
   const content = getHomeContent(resolvedParams.locale);
+  const articles = await getAllArticles(resolvedParams.locale);
   const basePath = `/${resolvedParams.locale}`;
 
   return (
@@ -84,11 +86,11 @@ export default async function Home({
               </h2>
             </div>
 
-            {content.articles.map((article, index) => (
+            {articles.map((article, index) => (
               <article key={`${article.title}-${index}`} className="group cursor-pointer">
                 <a
                   className="flex flex-col gap-3"
-                  href={article.href.startsWith("/") ? `${basePath}${article.href}` : article.href}
+                  href={`${basePath}/articles/${article.slug}`}
                 >
                   <header className="flex flex-col gap-1">
                     <h3 className="text-2xl md:text-3xl font-bold text-text-main dark:text-white group-hover:text-primary transition-colors">

@@ -25,7 +25,6 @@ export type HomeContent = {
     cta: string;
   };
   latestWritings: string;
-  articles: HomeArticle[];
   newsletter: {
     title: string;
     description: string;
@@ -38,28 +37,11 @@ export type HomeContent = {
   };
 };
 
-export type ArticleContent = {
-  nav: HomeContent["nav"];
-  meta: {
-    categories: string[];
-    title: string;
-    date: string;
-    dateTime: string;
-    readTime: string;
-    commentCount: number;
-  };
-  toc: { id: string; label: string; active?: boolean }[];
-  markdown: string;
-  labels: {
-    tableOfContents: string;
-    backToHome: string;
-    previousPost: string;
-    nextPost: string;
-  };
-  adjacent: {
-    previous: { title: string } | null;
-    next: { title: string } | null;
-  };
+export type ArticleLabels = {
+  tableOfContents: string;
+  backToHome: string;
+  previousPost: string;
+  nextPost: string;
 };
 
 export const getHomeContent = (locale: Locale): HomeContent => ({
@@ -77,40 +59,6 @@ export const getHomeContent = (locale: Locale): HomeContent => ({
     cta: t(locale, "home.hero.cta"),
   },
   latestWritings: t(locale, "home.latestWritings"),
-  articles: [
-    {
-      title: t(locale, "home.article1.title"),
-      date: t(locale, "home.article1.date"),
-      dateTime: "2023-10-24",
-      readTime: t(locale, "home.article1.readTime"),
-      excerpt: t(locale, "home.article1.excerpt"),
-      href: "/article",
-    },
-    {
-      title: t(locale, "home.article2.title"),
-      date: t(locale, "home.article2.date"),
-      dateTime: "2023-09-12",
-      readTime: t(locale, "home.article2.readTime"),
-      excerpt: t(locale, "home.article2.excerpt"),
-      href: "#",
-    },
-    {
-      title: t(locale, "home.article3.title"),
-      date: t(locale, "home.article3.date"),
-      dateTime: "2023-08-05",
-      readTime: t(locale, "home.article3.readTime"),
-      excerpt: t(locale, "home.article3.excerpt"),
-      href: "#",
-    },
-    {
-      title: t(locale, "home.article4.title"),
-      date: t(locale, "home.article4.date"),
-      dateTime: "2023-07-15",
-      readTime: t(locale, "home.article4.readTime"),
-      excerpt: t(locale, "home.article4.excerpt"),
-      href: "#",
-    },
-  ],
   newsletter: {
     title: t(locale, "newsletter.title"),
     description: t(locale, "newsletter.description"),
@@ -123,34 +71,9 @@ export const getHomeContent = (locale: Locale): HomeContent => ({
   },
 });
 
-export const getArticleContent = (locale: Locale): ArticleContent => ({
-  nav: {
-    blog: t(locale, "nav.blog"),
-    about: t(locale, "nav.about"),
-  },
-  meta: {
-    categories: [t(locale, "article.category1"), t(locale, "article.category2")],
-    title: t(locale, "article.title"),
-    date: t(locale, "article.date"),
-    dateTime: "2023-10-24",
-    readTime: t(locale, "article.readTime"),
-    commentCount: 12,
-  },
-  toc: [
-    { id: "introduction", label: t(locale, "article.toc.introduction"), active: true },
-    { id: "the-dependency-array-myth", label: t(locale, "article.toc.dependency") },
-    { id: "breaking-the-habit", label: t(locale, "article.toc.breaking") },
-    { id: "conclusion", label: t(locale, "article.toc.conclusion") },
-  ],
-  markdown: t(locale, "article.markdown"),
-  labels: {
-    tableOfContents: t(locale, "article.labels.toc"),
-    backToHome: t(locale, "article.labels.backToHome"),
-    previousPost: t(locale, "article.labels.previous"),
-    nextPost: t(locale, "article.labels.next"),
-  },
-  adjacent: {
-    previous: { title: t(locale, "article.adjacent.previousTitle") },
-    next: { title: t(locale, "article.adjacent.nextTitle") },
-  },
+export const getArticleLabels = (locale: Locale): ArticleLabels => ({
+  tableOfContents: t(locale, "article.labels.toc"),
+  backToHome: t(locale, "article.labels.backToHome"),
+  previousPost: t(locale, "article.labels.previous"),
+  nextPost: t(locale, "article.labels.next"),
 });
