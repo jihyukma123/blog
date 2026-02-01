@@ -116,39 +116,42 @@ export default async function Home({
             ))}
           </section>
 
-          <section className="bg-white dark:bg-gray-800 rounded-xl p-8 md:p-12 border border-gray-200 dark:border-gray-700 shadow-sm relative overflow-hidden">
-            <div className="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-primary"></div>
-            <div className="relative z-10 flex flex-col gap-6 items-start">
-              <div className="flex flex-col gap-2">
-                <h2 className="text-2xl font-bold text-text-main dark:text-white flex items-center gap-2">
-                  <span className="material-symbols-outlined text-primary">
-                    mail
-                  </span>
-                  {content.newsletter.title}
-                </h2>
-                <p className="text-text-muted max-w-md">
-                  {content.newsletter.description}
+          {/*
+            TODO: 나중에 소식 받기 섹션 다시 추가하기.
+            <section className="bg-white dark:bg-gray-800 rounded-xl p-8 md:p-12 border border-gray-200 dark:border-gray-700 shadow-sm relative overflow-hidden">
+              <div className="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-primary"></div>
+              <div className="relative z-10 flex flex-col gap-6 items-start">
+                <div className="flex flex-col gap-2">
+                  <h2 className="text-2xl font-bold text-text-main dark:text-white flex items-center gap-2">
+                    <span className="material-symbols-outlined text-primary">
+                      mail
+                    </span>
+                    {content.newsletter.title}
+                  </h2>
+                  <p className="text-text-muted max-w-md">
+                    {content.newsletter.description}
+                  </p>
+                </div>
+                <form className="w-full max-w-md flex flex-col sm:flex-row gap-3">
+                  <input
+                    className="flex-1 bg-background-light dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:outline-none placeholder:text-text-muted/60"
+                    placeholder={content.newsletter.placeholder}
+                    type="email"
+                  />
+                  <button
+                    className="bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap"
+                    type="button"
+                  >
+                    {content.newsletter.button}
+                  </button>
+                </form>
+                <p className="text-xs text-text-muted/70">
+                  {content.newsletter.footnote}
                 </p>
               </div>
-              <form className="w-full max-w-md flex flex-col sm:flex-row gap-3">
-                <input
-                  className="flex-1 bg-background-light dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-3 text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:outline-none placeholder:text-text-muted/60"
-                  placeholder={content.newsletter.placeholder}
-                  type="email"
-                />
-                <button
-                  className="bg-primary text-white font-bold px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors whitespace-nowrap"
-                  type="button"
-                >
-                  {content.newsletter.button}
-                </button>
-              </form>
-              <p className="text-xs text-text-muted/70">
-                {content.newsletter.footnote}
-              </p>
-            </div>
-          </section>
+            </section>
+          */}
         </div>
       </main>
 
