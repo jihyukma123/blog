@@ -14,6 +14,16 @@ export type AdjacentPost = {
   href: string;
 };
 
+export type NavLabels = {
+  blog: string;
+  about: string;
+};
+
+export type ArticleLabels = {
+  tableOfContents: string;
+  backToHome: string;
+};
+
 export type ArticleMeta = {
   categories: string[];
   title: string;
@@ -30,6 +40,9 @@ type ArticleDetailProps = {
   toc?: TocItem[];
   previousPost?: AdjacentPost;
   nextPost?: AdjacentPost;
+  homeHref?: string;
+  navLabels?: NavLabels;
+  labels?: ArticleLabels;
 };
 
 const defaultToc: TocItem[] = [
@@ -46,6 +59,12 @@ export default async function ArticleDetail({
   toc = defaultToc,
   previousPost,
   nextPost,
+  homeHref = "/",
+  navLabels = { blog: "Blog", about: "About" },
+  labels = {
+    tableOfContents: "Table of Contents",
+    backToHome: "Back to Home",
+  },
 }: ArticleDetailProps) {
   const renderedMarkdown = markdown ? await renderMarkdown(markdown) : null;
 
@@ -53,7 +72,7 @@ export default async function ArticleDetail({
     <>
       <header className="w-full flex justify-center py-8 px-4 md:px-8 border-b border-gray-200/50 dark:border-gray-800">
         <div className="max-w-[720px] w-full flex items-center justify-between">
-          <a className="flex items-center gap-2 group" href="/">
+          <a className="flex items-center gap-2 group" href={homeHref}>
             <span className="material-symbols-outlined text-primary text-3xl group-hover:rotate-12 transition-transform">
               potted_plant
             </span>
@@ -66,13 +85,13 @@ export default async function ArticleDetail({
               className="text-sm font-medium hover:text-primary transition-colors hover:underline decoration-primary decoration-2 underline-offset-4 text-text-main dark:text-gray-300"
               href="#"
             >
-              Blog
+              {navLabels.blog}
             </a>
             <a
               className="text-sm font-medium hover:text-primary transition-colors hover:underline decoration-primary decoration-2 underline-offset-4 text-text-main dark:text-gray-300"
               href="#"
             >
-              About
+              {navLabels.about}
             </a>
             <button className="material-symbols-outlined text-text-muted hover:text-primary transition-colors">
               search
@@ -87,7 +106,10 @@ export default async function ArticleDetail({
             <header className="mb-12">
               <div className="flex items-center gap-3 text-sm font-bold text-primary mb-4 uppercase tracking-widest">
                 {meta.categories.map((category, index) => (
-                  <div key={`${category}-${index}`} className="flex items-center gap-3">
+                  <div
+                    key={`${category}-${index}`}
+                    className="flex items-center gap-3"
+                  >
                     <span>{category}</span>
                     {index < meta.categories.length - 1 ? (
                       <span className="w-1 h-1 rounded-full bg-primary/40"></span>
@@ -106,7 +128,9 @@ export default async function ArticleDetail({
                   <time dateTime={meta.dateTime}>{meta.date}</time>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="material-symbols-outlined text-sm">schedule</span>
+                  <span className="material-symbols-outlined text-sm">
+                    schedule
+                  </span>
                   <span>{meta.readTime}</span>
                 </div>
               </div>
@@ -114,9 +138,7 @@ export default async function ArticleDetail({
 
             <div className="max-w-none article-content">
               {renderedMarkdown ? (
-                <div
-                  dangerouslySetInnerHTML={{ __html: renderedMarkdown }}
-                />
+                <div dangerouslySetInnerHTML={{ __html: renderedMarkdown }} />
               ) : (
                 content
               )}
@@ -141,7 +163,10 @@ export default async function ArticleDetail({
                   </a>
                 ) : null}
                 {nextPost ? (
-                  <a className="flex-1 md:text-right group" href={nextPost.href}>
+                  <a
+                    className="flex-1 md:text-right group"
+                    href={nextPost.href}
+                  >
                     <span className="text-xs font-bold text-text-muted uppercase tracking-widest block mb-2">
                       {nextPost.label}
                     </span>
@@ -159,10 +184,12 @@ export default async function ArticleDetail({
               <div className="flex justify-center">
                 <a
                   className="flex items-center gap-2 text-sm font-bold bg-transparent border border-gray-300 dark:border-gray-700 hover:border-primary text-text-muted hover:text-primary px-8 py-3 rounded-lg transition-all"
-                  href="#"
+                  href={homeHref}
                 >
-                  <span className="material-symbols-outlined text-[18px]">home</span>
-                  <span>Back to Home</span>
+                  <span className="material-symbols-outlined text-[18px]">
+                    home
+                  </span>
+                  <span>{labels.backToHome}</span>
                 </a>
               </div>
             </footer>
@@ -172,7 +199,7 @@ export default async function ArticleDetail({
             <div className="flex flex-col gap-8">
               <div>
                 <h3 className="text-xs font-bold uppercase tracking-widest text-text-muted mb-6">
-                  Table of Contents
+                  {labels.tableOfContents}
                 </h3>
                 <nav className="flex flex-col gap-4 border-l border-gray-200 dark:border-gray-800">
                   {toc.map((item) => (
@@ -196,7 +223,7 @@ export default async function ArticleDetail({
       </main>
 
       <footer className="w-full py-12 border-t border-gray-200 dark:border-gray-800 flex justify-center px-4 mt-auto">
-        <div className="max-w-[720px] w-full flex flex-col sm:flex-row justify-between items-center gap-6">
+        <div className="max-w-180 w-full flex flex-col sm:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-6">
             <a
               className="text-text-muted hover:text-primary transition-colors text-sm font-bold"

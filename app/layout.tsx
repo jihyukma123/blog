@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { Crimson_Pro, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { defaultLocale, isLocale } from "./lib/i18n";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -24,13 +26,17 @@ export const metadata: Metadata = {
     "Notes by Ji is a digital garden about JavaScript, calm design, and building for the web.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const cookieLocale = cookieStore.get("LOCALE")?.value;
+  const lang = isLocale(cookieLocale) ? cookieLocale : defaultLocale;
+
   return (
-    <html className="light" lang="en">
+    <html className="light" lang={lang}>
       <head>
         <link
           rel="stylesheet"
