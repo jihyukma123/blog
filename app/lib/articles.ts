@@ -32,6 +32,41 @@ const parseDate = (value: string) => {
   return Number.isNaN(parsed.getTime()) ? new Date(0) : parsed;
 };
 
+const normalizeFrontmatterString = (value: unknown, key: string, slug: string) => {
+  if (typeof value === "string") return value.trim();
+  if (value instanceof Date) return value.toISOString();
+  if (value == null) {
+    throw new Error(`Missing frontmatter key '${key}' in article '${slug}'.`);
+  }
+  return String(value).trim();
+};
+
+const normalizeFrontmatterDateTime = (value: unknown, slug: string) => {
+  if (typeof value === "string") return value.trim();
+  if (value instanceof Date) {
+    const iso = value.toISOString();
+    return iso.endsWith("T00:00:00.000Z") ? iso.slice(0, 10) : iso;
+  }
+  if (value == null) {
+    throw new Error(`Missing frontmatter key 'dateTime' in article '${slug}'.`);
+  }
+  const parsed = new Date(String(value));
+  if (Number.isNaN(parsed.getTime())) {
+    throw new Error(`Invalid frontmatter 'dateTime' in article '${slug}'.`);
+  }
+  const iso = parsed.toISOString();
+  return iso.endsWith("T00:00:00.000Z") ? iso.slice(0, 10) : iso;
+};
+
+const normalizeFrontmatterDate = (value: unknown, slug: string) => {
+  if (typeof value === "string") return value.trim();
+  if (value instanceof Date) return value.toISOString().slice(0, 10);
+  if (value == null) {
+    throw new Error(`Missing frontmatter key 'date' in article '${slug}'.`);
+  }
+  return String(value).trim();
+};
+
 const extractToc = (markdown: string) => {
   const slugger = new GithubSlugger();
   const toc: { id: string; label: string }[] = [];
@@ -82,12 +117,26 @@ const parseArticleFile = async (locale: Locale, slug: string) => {
   const { data, content } = matter(raw);
   ensureFrontmatter(data, slug);
 
-  const frontmatter = {
-    ...data,
-    categories: Array.isArray(data.categories)
-      ? data.categories
-      : [data.categories],
-  } as ArticleFrontmatter;
+  const categories = (Array.isArray(data.categories) ? data.categories : [data.categories])
+    .map((category) => String(category).trim())
+    .filter(Boolean);
+
+  const commentCount =
+    typeof data.commentCount === "number"
+      ? data.commentCount
+      : typeof data.commentCount === "string"
+        ? Number.parseInt(data.commentCount, 10)
+        : undefined;
+
+  const frontmatter: ArticleFrontmatter = {
+    title: normalizeFrontmatterString(data.title, "title", slug),
+    date: normalizeFrontmatterDate(data.date, slug),
+    dateTime: normalizeFrontmatterDateTime(data.dateTime, slug),
+    readTime: normalizeFrontmatterString(data.readTime, "readTime", slug),
+    excerpt: normalizeFrontmatterString(data.excerpt, "excerpt", slug),
+    categories,
+    ...(Number.isFinite(commentCount) ? { commentCount } : {}),
+  };
 
   return {
     frontmatter,

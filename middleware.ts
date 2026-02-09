@@ -1,10 +1,11 @@
+import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 const locales = ["en", "ko"];
 
 const publicFile = /\.[^/]+$/;
 
-const detectLocale = (request: any) => {
+const detectLocale = (request: NextRequest) => {
   const country = request.headers.get("x-vercel-ip-country");
   if (country === "KR") {
     return "ko";
@@ -18,7 +19,7 @@ const detectLocale = (request: any) => {
   return "en";
 };
 
-export function middleware(request: any) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (
