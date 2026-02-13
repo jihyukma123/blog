@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import ArticleDetail from "../../../components/ArticleDetail";
 import { getAllArticles, getArticleBySlug } from "../../../lib/articles";
-import { getArticleLabels, getHomeContent } from "../../../lib/content";
+import { getArticleLabels, getSiteContent } from "../../../lib/content";
 import { isLocale, locales } from "../../../lib/i18n";
 
 export const dynamicParams = false;
@@ -29,8 +29,8 @@ export default async function ArticlePage({
     notFound();
   }
 
-  const [content, labels, articles, article] = await Promise.all([
-    getHomeContent(resolvedParams.locale),
+  const [site, labels, articles, article] = await Promise.all([
+    getSiteContent(resolvedParams.locale),
     getArticleLabels(resolvedParams.locale),
     getAllArticles(resolvedParams.locale),
     getArticleBySlug(resolvedParams.locale, resolvedParams.slug),
@@ -53,7 +53,11 @@ export default async function ArticlePage({
 
   return (
     <ArticleDetail
-      navLabels={content.nav}
+      site={{
+        title: site.title,
+        tagline: site.tagline,
+        copyright: site.footer.copyright,
+      }}
       labels={{
         tableOfContents: labels.tableOfContents,
         backToHome: labels.backToHome,

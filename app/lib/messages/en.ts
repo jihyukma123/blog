@@ -1,22 +1,18 @@
 const messages = {
-  "nav.blog": "Blog",
-  "nav.about": "About",
-  "home.hero.line1": "Hi, I'm Alex.",
-  "home.hero.line2Lead": "Welcome to my ",
-  "home.hero.line2Highlight": "digital garden",
-  "home.hero.line2Tail": ".",
-  "home.hero.subtitle":
-    "I write about JavaScript, calm design, and building for the web. This is a space for thoughts on code, philosophy, and the occasional doodle.",
-  "home.hero.cta": "About Me",
-  "home.latestWritings": "Latest Writings",
-  "home.readArticle": "Read article",
-  "newsletter.title": "Stay in the loop",
-  "newsletter.description":
-    "Get notified when I publish new posts. No spam, just cozy tech updates delivered to your inbox once a month.",
-  "newsletter.placeholder": "your@email.com",
-  "newsletter.button": "Subscribe",
-  "newsletter.footnote": "Join 2,000+ other friendly developers.",
-  "footer.builtWith": "Built with ♥ and Next.js.",
+  "site.title": "Ji Hyuk Ma",
+  "site.tagline": "Software Engineer in Seoul",
+  "home.about.name": "Ji Hyuk Ma",
+  "home.about.roleLine": "Software Engineer in Seoul",
+  "home.about.p1": "",
+  "home.about.p2":
+    "What I enjoy most is lowering the barrier to technology—helping people understand it more easily and use it effectively. I find it genuinely fun to take something complex, explain it clearly, and turn it into something practical and approachable.",
+  "home.about.p3":
+    "I also love programming itself: writing code, refining it, and searching for better structure. I believe small, consistent improvements compound into meaningful change over time.",
+  "home.about.p4":
+    "More than short bursts of intensity, I value steadiness. I aim for consistency over the long run—learning, building, and moving forward one step at a time.",
+  "home.readPost": "Read Post",
+  "home.olderPosts": "Older Posts",
+  "footer.copyright": "© Ji Hyuk Ma.",
   "article.labels.toc": "Table of Contents",
   "article.labels.backToHome": "Back to Home",
   "article.labels.previous": "Previous Post",
