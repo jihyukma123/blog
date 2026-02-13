@@ -1,40 +1,22 @@
 import type { Locale } from "./i18n";
 import { t } from "./messages";
 
-export type HomeArticle = {
+export type SiteContent = {
   title: string;
-  date: string;
-  dateTime: string;
-  readTime: string;
-  excerpt: string;
-  href: string;
+  tagline: string;
+  footer: {
+    copyright: string;
+  };
 };
 
 export type HomeContent = {
-  nav: {
-    blog: string;
-    about: string;
+  about: {
+    name: string;
+    roleLine: string;
+    paragraphs: string[];
   };
-  readArticle: string;
-  hero: {
-    line1: string;
-    line2Lead: string;
-    line2Highlight: string;
-    line2Tail: string;
-    subtitle: string;
-    cta: string;
-  };
-  latestWritings: string;
-  newsletter: {
-    title: string;
-    description: string;
-    placeholder: string;
-    button: string;
-    footnote: string;
-  };
-  footer: {
-    builtWith: string;
-  };
+  readPost: string;
+  olderPosts: string;
 };
 
 export type ArticleLabels = {
@@ -44,31 +26,27 @@ export type ArticleLabels = {
   nextPost: string;
 };
 
-export const getHomeContent = (locale: Locale): HomeContent => ({
-  nav: {
-    blog: t(locale, "nav.blog"),
-    about: t(locale, "nav.about"),
-  },
-  readArticle: t(locale, "home.readArticle"),
-  hero: {
-    line1: t(locale, "home.hero.line1"),
-    line2Lead: t(locale, "home.hero.line2Lead"),
-    line2Highlight: t(locale, "home.hero.line2Highlight"),
-    line2Tail: t(locale, "home.hero.line2Tail"),
-    subtitle: t(locale, "home.hero.subtitle"),
-    cta: t(locale, "home.hero.cta"),
-  },
-  latestWritings: t(locale, "home.latestWritings"),
-  newsletter: {
-    title: t(locale, "newsletter.title"),
-    description: t(locale, "newsletter.description"),
-    placeholder: t(locale, "newsletter.placeholder"),
-    button: t(locale, "newsletter.button"),
-    footnote: t(locale, "newsletter.footnote"),
-  },
+export const getSiteContent = (locale: Locale): SiteContent => ({
+  title: t(locale, "site.title"),
+  tagline: t(locale, "site.tagline"),
   footer: {
-    builtWith: t(locale, "footer.builtWith"),
+    copyright: t(locale, "footer.copyright"),
   },
+});
+
+export const getHomeContent = (locale: Locale): HomeContent => ({
+  about: {
+    name: t(locale, "home.about.name"),
+    roleLine: t(locale, "home.about.roleLine"),
+    paragraphs: [
+      t(locale, "home.about.p1"),
+      t(locale, "home.about.p2"),
+      t(locale, "home.about.p3"),
+      t(locale, "home.about.p4"),
+    ].filter(Boolean),
+  },
+  readPost: t(locale, "home.readPost"),
+  olderPosts: t(locale, "home.olderPosts"),
 });
 
 export const getArticleLabels = (locale: Locale): ArticleLabels => ({

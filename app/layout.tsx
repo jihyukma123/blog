@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import { Crimson_Pro, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { JetBrains_Mono, Noto_Sans_KR, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { defaultLocale, isLocale } from "./lib/i18n";
 
@@ -9,10 +9,10 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
-const crimsonPro = Crimson_Pro({
-  variable: "--font-crimson-pro",
+const notoSans = Noto_Sans_KR({
+  variable: "--font-noto-sans",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -21,9 +21,8 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Notes by Ji - Cozy Tech Blog",
-  description:
-    "Notes by Ji is a digital garden about JavaScript, calm design, and building for the web.",
+  title: "Ji Hyuk Ma",
+  description: "Software Engineer in Seoul.",
 };
 
 export default async function RootLayout({
@@ -38,13 +37,14 @@ export default async function RootLayout({
   return (
     <html className="light" lang={lang}>
       <head>
+        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
         />
       </head>
       <body
-        className={`${spaceGrotesk.variable} ${crimsonPro.variable} ${jetBrainsMono.variable} bg-background-light text-text-main font-display antialiased overflow-x-hidden min-h-screen flex flex-col`}
+        className={`${spaceGrotesk.variable} ${notoSans.variable} ${jetBrainsMono.variable} bg-background-light dark:bg-background-dark text-text-main antialiased overflow-x-hidden min-h-screen flex flex-col`}
       >
         {children}
       </body>

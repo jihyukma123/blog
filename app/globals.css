@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #20b2aa;
-  --color-background-light: #f9f7f2;
-  --color-background-dark: #1a2626;
-  --color-text-main: #2f4f4f;
-  --color-text-muted: #698b8b;
+  --color-primary: #bf4646;
+  --color-terracotta: #b35a38;
+  --color-background-light: #fdfdfc;
+  --color-background-dark: #161d15;
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
   --font-display: var(--font-space-grotesk);
-  --font-serif: var(--font-crimson-pro);
+  --font-sans: var(--font-noto-sans);
   --font-mono: var(--font-jetbrains-mono);
   --radius: 0.25rem;
   --radius-lg: 0.5rem;
@@ -15,9 +16,26 @@
   --radius-full: 9999px;
 }
 
+:root {
+  --text-main: #1a1a1a;
+  --text-muted: #5b5b5b;
+}
+
+.dark {
+  --text-main: #e4e4e4;
+  --text-muted: #a3a3a3;
+}
+
 body {
-  background: var(--color-background-light);
-  color: var(--color-text-main);
+  font-family: var(--font-noto-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-space-grotesk), var(--font-noto-sans), ui-sans-serif,
+    system-ui, sans-serif;
 }
 
 .material-symbols-outlined {
@@ -25,7 +43,7 @@ body {
 }
 
 ::selection {
-  background-color: #20b2aa;
+  background-color: var(--color-primary);
   color: #ffffff;
 }
 
@@ -35,7 +53,7 @@ body {
   margin-top: 3rem;
   margin-bottom: 1rem;
   color: var(--color-text-main);
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
 }
 
 .article-content h3 {
@@ -44,14 +62,14 @@ body {
   margin-top: 2.5rem;
   margin-bottom: 0.75rem;
   color: var(--color-text-main);
-  font-family: var(--font-serif);
+  font-family: var(--font-display);
 }
 
 .article-content p {
   font-size: 1.125rem;
   line-height: 1.75;
   margin-bottom: 1.5rem;
-  color: rgba(47, 79, 79, 0.9);
+  color: color-mix(in oklab, var(--color-text-main) 90%, transparent);
 }
 
 .article-content strong {
@@ -72,7 +90,7 @@ body {
   padding-left: 1.5rem;
   font-size: 1.125rem;
   line-height: 1.7;
-  color: rgba(47, 79, 79, 0.9);
+  color: color-mix(in oklab, var(--color-text-main) 90%, transparent);
 }
 
 .article-content li {
@@ -85,14 +103,14 @@ body {
   margin: 2.5rem 0;
   font-style: italic;
   font-size: 1.25rem;
-  color: rgba(47, 79, 79, 0.8);
-  font-family: var(--font-serif);
+  color: color-mix(in oklab, var(--color-text-muted) 85%, transparent);
+  font-family: var(--font-display);
 }
 
 .article-content code {
   font-family: var(--font-mono);
   font-size: 0.95em;
-  background: rgba(32, 178, 170, 0.12);
+  background: color-mix(in oklab, var(--color-primary) 12%, transparent);
   color: #1c3a3a;
   padding: 0.15rem 0.4rem;
   border-radius: 0.35rem;
@@ -138,13 +156,13 @@ body {
 }
 
 .article-content .codeblock-copy:hover {
-  border-color: rgba(32, 178, 170, 0.6);
+  border-color: color-mix(in oklab, var(--color-primary) 60%, transparent);
   background: rgba(15, 28, 28, 0.85);
 }
 
 .article-content .codeblock-copy.is-copied {
-  border-color: rgba(32, 178, 170, 0.8);
-  color: #20b2aa;
+  border-color: color-mix(in oklab, var(--color-primary) 80%, transparent);
+  color: var(--color-primary);
 }
 
 .article-content pre code {
@@ -156,7 +174,7 @@ body {
 
 .article-content hr {
   border: none;
-  border-top: 1px solid rgba(32, 178, 170, 0.3);
+  border-top: 1px solid color-mix(in oklab, var(--color-primary) 30%, transparent);
   margin: 2.5rem 0;
 }
 
@@ -174,13 +192,13 @@ body {
 
 .article-content th,
 .article-content td {
-  border: 1px solid rgba(32, 178, 170, 0.2);
+  border: 1px solid color-mix(in oklab, var(--color-primary) 20%, transparent);
   padding: 0.75rem;
   text-align: left;
 }
 
 .article-content th {
-  background: rgba(32, 178, 170, 0.08);
+  background: color-mix(in oklab, var(--color-primary) 8%, transparent);
   font-weight: 700;
 }
 
@@ -189,12 +207,4 @@ body {
   border-left: 2px solid var(--color-primary);
   padding-left: 1rem;
   margin-left: -1px;
-}
-
-.toc-rail {
-  position: fixed;
-  top: 140px;
-  left: calc(50% - 360px - 260px);
-  width: 220px;
-  z-index: 10;
 }
