@@ -6,8 +6,11 @@ import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
 
+export const MARKDOWN_HEADING_ID_PREFIX = "user-content-";
+
 const schema = {
   ...defaultSchema,
+  clobberPrefix: MARKDOWN_HEADING_ID_PREFIX,
   attributes: {
     ...defaultSchema.attributes,
     a: [

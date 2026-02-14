@@ -4,6 +4,7 @@ import GithubSlugger from "github-slugger";
 import matter from "gray-matter";
 
 import type { Locale } from "./i18n";
+import { MARKDOWN_HEADING_ID_PREFIX } from "./markdown";
 
 export type ArticleFrontmatter = {
   title: string;
@@ -77,7 +78,7 @@ const extractToc = (markdown: string) => {
     if (!match) continue;
     const label = match[2].trim();
     if (!label) continue;
-    const id = slugger.slug(label);
+    const id = `${MARKDOWN_HEADING_ID_PREFIX}${slugger.slug(label)}`;
     toc.push({ id, label });
   }
 
