@@ -65,6 +65,7 @@ export default async function ArticlePage({
       meta={{
         categories: article.categories,
         title: article.title,
+        excerpt: article.excerpt,
         date: article.date,
         dateTime: article.dateTime,
         readTime: article.readTime,

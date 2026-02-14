@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import ArticleCard from "../components/ArticleCard";
 import SiteFooter from "../components/SiteFooter";
 import SiteHeader from "../components/SiteHeader";
 import { getAllArticles } from "../lib/articles";
@@ -37,19 +38,14 @@ export default async function Home({
       <main className="w-full max-w-[800px] mx-auto px-6 pt-6 pb-12 flex-1">
         <div className="flex flex-col pt-2">
           {articles.map((article) => (
-            <article
+            <ArticleCard
               key={article.slug}
-              className="group py-10 border-b border-primary/25 dark:border-primary/30 last:border-b-0"
-            >
-              <time className="text-terracotta/80 text-sm font-display font-medium mb-2 block tracking-wider uppercase">
-                {article.date}
-              </time>
-              <a className="block" href={`${basePath}/articles/${article.slug}`}>
-                <h3 className="text-xl md:text-2xl font-bold text-neutral-900 dark:text-neutral-100 group-hover:text-primary/80 transition-colors leading-tight">
-                  {article.title}
-                </h3>
-              </a>
-            </article>
+              href={`${basePath}/articles/${article.slug}`}
+              title={article.title}
+              excerpt={article.excerpt}
+              date={article.date}
+              dateTime={article.dateTime}
+            />
           ))}
         </div>
 

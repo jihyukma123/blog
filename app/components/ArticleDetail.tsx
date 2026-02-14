@@ -24,6 +24,7 @@ export type ArticleLabels = {
 export type ArticleMeta = {
   categories: string[];
   title: string;
+  excerpt: string;
   date: string;
   dateTime: string;
   readTime: string;
@@ -81,7 +82,10 @@ export default async function ArticleDetail({
               {meta.categories.length > 0 ? (
                 <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-widest text-terracotta/80 mb-4">
                   {meta.categories.map((category, index) => (
-                    <span key={`${category}-${index}`} className="inline-flex items-center gap-2">
+                    <span
+                      key={`${category}-${index}`}
+                      className="inline-flex items-center gap-2"
+                    >
                       <span>{category}</span>
                       {index < meta.categories.length - 1 ? (
                         <span className="w-1 h-1 rounded-full bg-terracotta/40"></span>
@@ -95,7 +99,11 @@ export default async function ArticleDetail({
                 {meta.title}
               </h1>
 
-              <div className="flex flex-wrap items-center gap-6 text-sm text-text-muted border-b border-primary/10 pb-8">
+              <p className="text-lg md:text-xl leading-relaxed text-text-muted mb-10">
+                {meta.excerpt}
+              </p>
+
+              <div className="flex flex-wrap items-center gap-6 text-sm text-text-muted border-b border-primary/10 pb-4">
                 <div className="flex items-center gap-2">
                   <span className="material-symbols-outlined text-[18px]">
                     calendar_today
@@ -140,7 +148,10 @@ export default async function ArticleDetail({
                   <div />
                 )}
                 {nextPost ? (
-                  <a className="flex-1 md:text-right group" href={nextPost.href}>
+                  <a
+                    className="flex-1 md:text-right group"
+                    href={nextPost.href}
+                  >
                     <span className="text-xs font-bold text-text-muted uppercase tracking-widest block mb-2">
                       {nextPost.label}
                     </span>
